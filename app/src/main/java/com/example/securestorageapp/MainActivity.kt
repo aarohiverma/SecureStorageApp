@@ -20,7 +20,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        TinkConfig.register()
+        if (TinkHelper.aead == null) {
+            TinkHelper.initialize(getApplicationContext());
+        }
         setContent {
             SecureStorageAppTheme {
                 SecureStorageScreen()
@@ -61,7 +63,7 @@ fun SecureStorageScreen() {
                     SecureStorage.saveEncryptedData(context, "mock_data", inputText)
 
                     val encryptedData = SecureStorage.retrieveEncryptedData(context, "mock_data")
-                    Log.d("EncryptedData", "Encrypted Data: $encryptedData")
+//                    Log.d("EncryptedData", "Encrypted Data: $encryptedData")
 
                     inputText = "" // Clear the input field after saving
                     errorMessage = "" // Reset error message

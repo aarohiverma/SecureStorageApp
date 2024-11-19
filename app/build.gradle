@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.securestorageapp"
-        minSdk 21
+        minSdk 26
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -48,9 +48,13 @@ dependencies {
     implementation libs.androidx.material3
 
 //    implementation 'com.google.crypto.tink:tink-android:1.15.0' // Latest version
-    implementation 'com.google.crypto.tink:tink:1.15.0'
+    implementation('com.google.crypto.tink:tink-android:1.5.0') {
+        exclude group: 'com.google.crypto.tink', module: 'tink'
+    }
+    implementation 'androidx.security:security-crypto:1.0.0'
     // Core cryptography library
-
+//    implementation 'com.google.crypto.tink:tink-aead:1.15.0'
+//    implementation 'com.google.crypto.tink:tink-integration-android:1.15.0'
 
 //    implementation 'com.google.crypto.tink:tink-android-aead:1.6.1' // For AEAD encryption
 
